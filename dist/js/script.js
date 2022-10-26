@@ -250,13 +250,15 @@
           }
         }
       }
+      thisProduct.priceSingle = price;
+    
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
 
+
       //add new property "priceSingle" to thisProduct
-
-      thisProduct.priceSingle = price;
-
+      
+      
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
       thisProduct.price = price;
@@ -393,10 +395,12 @@
 
       thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
       thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
-      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelector(select.cart.totalPrice);
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
 
       thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+      thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+      thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
     }
 
     initActions(){
@@ -411,7 +415,7 @@
       });
 
       thisCart.dom.productList.addEventListener('remove', function(event){
-        thisCart.remove(event.detail.CartProduct);
+        thisCart.remove(event.detail.cartProduct);
       });
 
       thisCart.dom.form.addEventListener('submit', function(event){
@@ -496,6 +500,10 @@
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
       thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
+      for(const element of thisCart.dom.totalPrice){
+        console.log(element);
+        element.innerHTML = thisCart.totalPrice;
+      }
     }
 
     remove(cartProduct){
@@ -561,7 +569,7 @@
       });
       thisCartProduct.dom.wrapper.dispatchEvent(event);
     }
-
+    
     initActions(){
       const thisCartProduct = this;
       
@@ -571,6 +579,7 @@
 
       thisCartProduct.dom.remove.addEventListener('click', function(event){
         event.preventDefault();
+        thisCartProduct.remove();
       });
     }
 
