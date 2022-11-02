@@ -160,11 +160,11 @@ class Product{
         }
       }
     }
+    thisProduct.priceSingle = price;
       
     /* multiply price by amount */
     price *= thisProduct.amountWidget.value;
       
-    thisProduct.priceSingle = price;
 
     //add new property "priceSingle" to thisProduct
       
