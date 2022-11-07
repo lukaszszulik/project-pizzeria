@@ -39,7 +39,7 @@ class Booking{
     //console.log('getData params', params);
 
     const urls = {
-      booking:           settings.db.url + '/' + settings.db.booking
+      bookings:           settings.db.url + '/' + settings.db.booking
                                          + '?' + params.booking.join('&') ,
       eventsCurrent:     settings.db.url + '/' + settings.db.events
                                          + '?' + params.eventsCurrent.join('&') ,
@@ -50,7 +50,7 @@ class Booking{
     //console.log('getData urls', urls);
 
     Promise.all([
-      fetch(urls.booking),
+      fetch(urls.bookings),
       fetch(urls.eventsCurrent),
       fetch(urls.eventsRepeat),
     ])
