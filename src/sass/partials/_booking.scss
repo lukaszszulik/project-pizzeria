@@ -171,6 +171,12 @@
         background: $color-dark;
         opacity: 0.4;
       }
+    }
+
+    &.selected {
+      border: 2px;
+      border-style: solid;
+      color:rgb(140, 132, 132);
 
     }
   }
