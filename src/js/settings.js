@@ -39,10 +39,13 @@ export const select = {
         input: 'input[type="range"]',
         output: '.output',
       },
-      flickity: {
-        carousel: '.main-carousel',
-      },
+      
     },
+
+    flickity: {
+      carousel: '.main-carousel',
+    },
+    
     booking: {
       peopleAmount: '.people-amount',
       hoursAmount: '.hours-amount',
@@ -123,7 +126,7 @@ export const settings = {
     product: 'product',
     order: 'order',
     bookings: 'bookings',
-    events: 'event',
+    events: 'events',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',

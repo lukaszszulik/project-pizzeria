@@ -15,7 +15,9 @@ class Home {
     thisHome.dom = {};
     thisHome.dom.wrapper = element;
     thisHome.dom.wrapper.innerHTML = generatedHTML;
-    thisHome.dom.wrapper.carouselWidget = thisHome.dom.wrapper.querySelector(select.widgets.flickity.carousel);
+    thisHome.dom.wrapper.carouselWidget = thisHome.dom.wrapper.querySelector
+    // eslint-disable-next-line no-unexpected-multiline
+    (select.widgets.flickity.carousel);
   }
 
   initWidgets() {

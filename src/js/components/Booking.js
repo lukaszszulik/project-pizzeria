@@ -11,7 +11,7 @@ class Booking{
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getdata();
-    thisBooking.tableSelected();
+    thisBooking.initTables();
   }
 
   getdata(){
@@ -88,7 +88,7 @@ class Booking{
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
     }
 
-    const minDate = thisBooking.DatePicker.minDate;
+    const minDate = thisBooking.datePicker.minDate;
     const maxDate = thisBooking.datePicker.maxDate;
 
     for(let item of eventsRepeat){
@@ -201,14 +201,16 @@ class Booking{
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.widgets.booking.hoursAmount);
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.amount.datePicker.wrapper);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.amount.hourPicker.wrapper);
-    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
-    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
-    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
-    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelector(select.booking.starters);
-    thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.bookingSubmit);
+    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.widgets.booking.tables);
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.widgets.booking.phone);
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.widgets.booking.address);
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelector(select.widgets.booking.starters);
+    //thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.bookingSubmit);
 
-    thisBooking.dom.tablesContainer = thisBooking.dom.wrapper.querySelector(select.booking.allTables);
-    thisBooking.dom.submit = thisBooking.dom.wrapper.querySelector(select.booking.submit);
+    thisBooking.dom.tablesContainer = thisBooking.dom.wrapper.querySelector(select.widgets.booking.allTables);
+    thisBooking.dom.submit = thisBooking.dom.wrapper.querySelector(select.widgets.booking.submit);
+
+    thisBooking.dom.wrapper.querySelectorAll(select.widgets.booking.tables); 
   }
 
   initWidgets(){
