@@ -112,14 +112,16 @@ class Booking{
 
     const startHour = utils.hourToNumber(hour);
 
-    for(let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5)
+    for(let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5){
     //console.log('loop', hourBlock);
-
-      if(typeof thisBooking.booked[date][startHour] == 'undefined'){
-        thisBooking.booked[date][startHour] = [];
+      console.log('hourBlock', hourBlock);
+      if(typeof thisBooking.booked[date][hourBlock] == 'undefined'){
+        thisBooking.booked[date][hourBlock] = [];
       }
 
-    thisBooking.booked[date][startHour].push(table);
+      thisBooking.booked[date][hourBlock].push(table);
+      console.log('thisBooking.booked', thisBooking.booked);
+    }
   }
 
   updateDOM() {
@@ -183,7 +185,7 @@ class Booking{
 
         /* other way - the table is selected - add class selected */
         thisBooking.tableSelected = tableId;
-        clickedElement.classList.add(classNames.booking.tableSelectedorAll);
+        clickedElement.classList.add(classNames.booking.tableSelected);
       }
     }
   }
@@ -238,13 +240,9 @@ class Booking{
     });
 
     thisBooking.dom.wrapper.addEventListener('updated', function () {
-      for (let table of thisBooking.dom.tables) {
+      /* for (let table of thisBooking.dom.tables) {
         table.classList.remove(classNames.booking.tableSelected);
-      }
-      thisBooking.updateDOM();
-    });
-
-    thisBooking.dom.wrapper.addEventListener('updated', function () {
+      }*/
       thisBooking.updateDOM();
     });
 
@@ -278,13 +276,15 @@ class Booking{
     //  if()
     // }
 
-    //for (let starter in thisBooking.dom.starters) {
-    //if (starter.checked) {
-    // payload.starters.push(starter.value);
-    // }
-    // }
+    for (let starter of thisBooking.dom.starters) {
+      console.log('starter', starter);
+      if (starter.checked) {
+        payload.starters.push(starter.value);
+      
+      }
+    }
 
-    thisBooking.dom.wrapper.addEventListener('updated', function () {
+    /* thisBooking.dom.wrapper.addEventListener('updated', function () {
       for (let table of thisBooking.dom.tables) {
         table.classList.remove(classNames.booking.tableSelected);
         const clickedElement = event.target;
@@ -297,7 +297,22 @@ class Booking{
         }
       }
     });
-  
+
+    */
+
+    /* thisBooking.dom.starters.addEventListener('click', function (event) {
+
+      const clickedElement = event.target;
+      if (clickedElement.tagName === 'input' && clickedElement.type === 'checkbox' && clickedElement.name === 'starter') {
+        if (clickedElement.checked === true) {
+          payload.starters.push(clickedElement.value);
+        } else if (clickedElement.checked === false) {
+          payload.starters.splice(thisBooking.starters.indexOf(clickedElement.value), 1);
+        }
+      }
+    });
+
+*/  
 
     const options = {
       method: 'POST',
@@ -313,6 +328,7 @@ class Booking{
       }).then(function (parsedResponse) {
         console.log('parsedResponse', parsedResponse);
         thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+        thisBooking.updateDOM();
       });
       
 
