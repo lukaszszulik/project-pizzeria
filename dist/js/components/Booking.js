@@ -114,13 +114,13 @@ class Booking{
 
     for(let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5){
     //console.log('loop', hourBlock);
-      console.log('hourBlock', hourBlock);
+      //console.log('hourBlock', hourBlock);
       if(typeof thisBooking.booked[date][hourBlock] == 'undefined'){
         thisBooking.booked[date][hourBlock] = [];
       }
 
       thisBooking.booked[date][hourBlock].push(table);
-      console.log('thisBooking.booked', thisBooking.booked);
+      //console.log('thisBooking.booked', thisBooking.booked);
     }
   }
 
